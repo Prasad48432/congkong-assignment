@@ -46,7 +46,7 @@ import {
   Search
 } from "lucide-react";
 
-const data = {
+export const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
@@ -59,7 +59,7 @@ const data = {
       icon: CalendarCheck2,
     },
     {
-      title: "Realtime Dashboard",
+      title: "Realtime KPI Dashboard",
       url: "/dashboard",
       icon: ChartLine,
     },

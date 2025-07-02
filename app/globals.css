@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-.inter{
+.inter {
   font-family: var(--font-inter);
 }
 
@@ -114,11 +114,11 @@
   --border: oklch(0.4276 0 0);
   --input: oklch(0.3211 0 0);
   --ring: oklch(0.8078 0 0);
-  --chart-1: oklch(0.9521 0 0);
-  --chart-2: oklch(0.8576 0 0);
-  --chart-3: oklch(0.7572 0 0);
-  --chart-4: oklch(0.6534 0 0);
-  --chart-5: oklch(0.5452 0 0);
+  --chart-1: oklch(0.503 0.2773 269.62);
+  --chart-2: oklch(0.6248 0.1898 272.36);
+  --chart-3: oklch(0.7321 0.0749 169.8670);
+  --chart-4: oklch(0.8540 0.0882 76.8292);
+  --chart-5: oklch(0.7857 0.0645 258.0839);
   --sidebar: oklch(0.2478 0 0);
   --sidebar-foreground: oklch(0.8945 0 0);
   --sidebar-primary: oklch(0.7572 0 0);
@@ -145,6 +145,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

@@ -1,8 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Bell, CreditCard, LogOut, User } from "lucide-react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -13,12 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
+import { data } from "./app-sidebar";
 
 export function SiteHeader({
   user,
@@ -29,6 +25,15 @@ export function SiteHeader({
     avatar: string;
   };
 }) {
+  const pathname = usePathname();
+  // Combine both arrays
+  const allItems = [
+    ...data.navMain,
+    ...(data.tools ?? data.navSecondary ?? []),
+  ];
+
+  // Find the matching item
+  const activeItem = allItems.find((item) => pathname.startsWith(item.url));
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
@@ -37,7 +42,14 @@ export function SiteHeader({
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">Realtime KPI Dashboard</h1>
+        <h1 className="text-base font-medium">
+          {activeItem
+            ? "title" in activeItem
+              ? activeItem.title
+              : activeItem.name
+            : "Dashboard"}
+        </h1>
+
         <div className="ml-auto flex items-center gap-2">
           <Button
             variant="ghost"
@@ -45,9 +57,7 @@ export function SiteHeader({
             size="icon"
             className="flex rounded-full group"
           >
-            <span
-              className="text-foreground relative"
-            >
+            <span className="text-foreground relative">
               <span className="group-hover:hidden absolute top-[30%] right-[12px] -translate-y-[30%] w-1.5 h-1.5 flex items-center justify-center">
                 <span className="absolute w-full h-full bg-green-400 rounded-full" />
                 <span className="absolute w-full h-full bg-green-400 rounded-full opacity-75 animate-ping" />
