@@ -5,9 +5,10 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
 
 const user = {
-  name: "shadcn",
-  email: "m@example.com",
-  avatar: "/avatars/shadcn.jpg",
+  name: "Prasad Reddy",
+  email: "prasad@gmail.com",
+  avatar:
+    "/avatar.svg",
 };
 
 export default function DashBoardLayout({ children }: { children: ReactNode }) {
@@ -20,7 +21,7 @@ export default function DashBoardLayout({ children }: { children: ReactNode }) {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar variant="inset" user={user} />
       <SidebarInset>
         <SiteHeader user={user} />
         {children}

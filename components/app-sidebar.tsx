@@ -43,25 +43,20 @@ import {
   NotepadText,
   Settings,
   CircleQuestionMark,
-  Search
+  Search,
 } from "lucide-react";
 
 export const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
-    {
-      title: "Event Management",
-      url: "/dashboard/event-management",
-      icon: CalendarCheck2,
-    },
     {
       title: "Realtime KPI Dashboard",
       url: "/dashboard",
       icon: ChartLine,
+    },
+    {
+      title: "Event Management",
+      url: "/dashboard/event-management",
+      icon: CalendarCheck2,
     },
     {
       title: "Matching Tracker",
@@ -105,7 +100,16 @@ export const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  user,
+  ...props
+}: {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
+} & React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -120,7 +124,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   alt="Main logo"
                   src="/logo.avif"
                 />
-                <span className="text-base lg:text-lg font-semibold">Congkong</span>
+                <span className="text-base lg:text-lg font-semibold">
+                  Congkong
+                </span>
               </a>
             </span>
           </SidebarMenuItem>
@@ -132,7 +138,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );

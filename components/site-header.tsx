@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Bell, CreditCard, LogOut, User } from "lucide-react";
+import { Bell, CreditCard, LogOut, MoveRight, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -51,23 +51,81 @@ export function SiteHeader({
         </h1>
 
         <div className="ml-auto flex items-center gap-2">
-          <Button
-            variant="ghost"
-            asChild
-            size="icon"
-            className="flex rounded-full group"
-          >
-            <span className="text-foreground relative">
-              <span className="group-hover:hidden absolute top-[30%] right-[12px] -translate-y-[30%] w-1.5 h-1.5 flex items-center justify-center">
-                <span className="absolute w-full h-full bg-green-400 rounded-full" />
-                <span className="absolute w-full h-full bg-green-400 rounded-full opacity-75 animate-ping" />
-              </span>
-              <Bell />
-            </span>
-          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Avatar className="h-8 w-8 rounded-full grayscale cursor-pointer">
+              <Button
+                variant="outline"
+                asChild
+                size="icon"
+                className="flex rounded-full group"
+              >
+                <span className="text-foreground relative">
+                  <span className="group-hover:hidden absolute top-[30%] right-[10px] -translate-y-[30%] w-1.5 h-1.5 flex items-center justify-center">
+                    <span className="absolute w-full h-full bg-green-400 rounded-full" />
+                    <span className="absolute w-full h-full bg-green-400 rounded-full opacity-75 animate-ping" />
+                  </span>
+                  <Bell />
+                </span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="min-w-64 rounded-lg py-2"
+              side="bottom"
+              align="end"
+              sideOffset={4}
+            >
+              <DropdownMenuLabel className="text-sm font-semibold text-foreground px-2 py-1.5">
+                Notifications
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+
+              {/* Example Notification Item */}
+              <span className="flex items-start gap-2 px-2 py-2">
+                <Bell className="mt-0.5 size-4 text-primary" />
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium leading-tight">
+                    New meeting scheduled
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    Your next 1:1 with Sarah is tomorrow at 10 AM.
+                  </span>
+                </div>
+              </span>
+
+              <span className="flex items-start gap-2 px-2 py-2">
+                <User className="mt-0.5 size-4" />
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium leading-tight">
+                    New user joined
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    John Doe signed up just now.
+                  </span>
+                </div>
+              </span>
+
+              <span className="flex items-start gap-2 px-2 py-2">
+                <CreditCard className="mt-0.5 size-4" />
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium leading-tight">
+                    Payment received
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    $59 credited to your account.
+                  </span>
+                </div>
+              </span>
+
+              <DropdownMenuSeparator />
+
+              <span className="py-1 justify-center text-xs text-primary font-medium hover:bg-transparent flex items-center gap-2 cursor-pointer">
+                View All Notifications <MoveRight size={18} strokeWidth={1} />
+              </span>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar className="h-8 w-8 rounded-full cursor-pointer">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-lg text-xs">
                   CN

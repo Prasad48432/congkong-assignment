@@ -1,11 +1,12 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -17,22 +18,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Database } from "@/lib/types/supabasetypes";
+import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 export const description = "An interactive area chart";
-
-type ChartData = Database['public']['Tables']['activity_log']['Row'];
-
-const chartData = [
-  { time: "02:00", login: 45, matched: 25, meeting: 10 },
-  { time: "10:00", login: 65, matched: 38, meeting: 17 },
-  { time: "11:00", login: 85, matched: 47, meeting: 23 },
-  { time: "12:30", login: 80, matched: 42, meeting: 19 },
-  { time: "13:00", login: 105, matched: 60, meeting: 30 },
-  { time: "14:00", login: 115, matched: 70, meeting: 35 },
-  { time: "15:00", login: 110, matched: 66, meeting: 32 },
-  { time: "16:00", login: 100, matched: 58, meeting: 25 },
-];
 
 const chartConfig = {
   visitors: {
@@ -52,8 +41,21 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartAreaInteractive({chartData1}:{chartData1: ChartData[]}) {
+export function ChartAreaInteractive({ activity }: { activity: Activity[] }) {
+  const activityData = activity.map((item) => ({
+    time: new Date(item.timestamp).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
+    login: item.participant_logins,
+    matched: item.matches,
+    meeting: item.meetings,
+  }));
+
   const isMobile = useIsMobile();
+  const [hoursRange, setHoursRange] = useState<number>(8); // default: last 8 hours
+
+  const filteredData = activityData.slice(-hoursRange);
 
   return (
     <Card className="@container/card w-full">
@@ -61,17 +63,50 @@ export function ChartAreaInteractive({chartData1}:{chartData1: ChartData[]}) {
         <CardTitle>Activity by Time</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Activity for the last 14 hours
+            Activity for the last 8 hours
           </span>
-          <span className="@[540px]/card:hidden">Last 14 hrs</span>
+          <span className="@[540px]/card:hidden">Last 8 hrs</span>
         </CardDescription>
+        <CardAction>
+          <ToggleGroup
+            type="single"
+            value={`${hoursRange}`}
+            onValueChange={(value) => setHoursRange(Number(value))}
+            variant="outline"
+            className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
+          >
+            <ToggleGroupItem value="30">Last 30 hours</ToggleGroupItem>
+            <ToggleGroupItem value="24">Last 24 hours</ToggleGroupItem>
+            <ToggleGroupItem value="8">Last 8 hours</ToggleGroupItem>
+          </ToggleGroup>
+          <Select value={`${hoursRange}`} onValueChange={(value) => setHoursRange(Number(value))}>
+            <SelectTrigger
+              className="flex w-28 text-xs **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
+              size="sm"
+              aria-label="Select a value"
+            >
+              <SelectValue placeholder="Last 3 months" />
+            </SelectTrigger>
+            <SelectContent className="rounded-xl">
+              <SelectItem value="30" className="rounded-lg">
+                30 hours
+              </SelectItem>
+              <SelectItem value="24" className="rounded-lg">
+                24 hours
+              </SelectItem>
+              <SelectItem value="8" className="rounded-lg">
+                8 hours
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </CardAction>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <LineChart data={chartData}>
+          <LineChart data={filteredData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="time"
