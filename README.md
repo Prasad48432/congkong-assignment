@@ -4,7 +4,7 @@ Hi, I'm **Sai Prasad Reddy**, and this is my submission for the Full Stack Web A
 
 This project demonstrates a responsive, mobile-first dashboard, built with **Next.js**, **TailwindCSS**, **ShadCN UI**, and **Supabase**.
 
----
+--
 
 ## 🌐 Deployed Version
 
@@ -59,8 +59,8 @@ Follow these steps to set up and run the project on your local machine:
 
 3. **Set Up Environment Variables**  
    Create a `.env.local` file in the root directory and add the following:
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+   `NEXT_PUBLIC_SUPABASE_URL=your_supabase_url`
+   `NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`
 
    
 Replace with your actual Supabase credentials.
