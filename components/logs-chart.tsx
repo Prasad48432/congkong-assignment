@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -41,7 +41,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ChartAreaInteractive({ activity }: { activity: Activity[] }) {
+export function LogsChart({ activity }: { activity: Activity[] }) {
   const activityData = activity.map((item) => ({
     time: new Date(item.timestamp).toLocaleTimeString([], {
       hour: "2-digit",

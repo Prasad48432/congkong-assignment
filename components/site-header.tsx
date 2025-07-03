@@ -26,14 +26,11 @@ export function SiteHeader({
   };
 }) {
   const pathname = usePathname();
-  // Combine both arrays
-  const allItems = [
-    ...data.navMain,
-    ...(data.tools ?? data.navSecondary ?? []),
-  ];
 
-  // Find the matching item
-  const activeItem = allItems.find((item) => pathname.startsWith(item.url));
+  const allItems = [...data.navMain, ...data.tools, ...data.navSecondary];
+
+
+  const activeItem = allItems.find((item) => pathname === item.url);
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
@@ -69,9 +66,7 @@ export function SiteHeader({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="min-w-64 rounded-lg py-2"
-              side="bottom"
-              align="end"
+              className="min-w-64 rounded-lg py-2 mr-2 mt-2 lg:mr-6"
               sideOffset={4}
             >
               <DropdownMenuLabel className="text-sm font-semibold text-foreground px-2 py-1.5">
@@ -79,15 +74,14 @@ export function SiteHeader({
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
 
-              {/* Example Notification Item */}
               <span className="flex items-start gap-2 px-2 py-2">
                 <Bell className="mt-0.5 size-4 text-primary" />
                 <div className="flex flex-col">
                   <span className="text-sm font-medium leading-tight">
-                    New meeting scheduled
+                    New Event scheduled
                   </span>
                   <span className="text-xs text-muted-foreground">
-                    Your next 1:1 with Sarah is tomorrow at 10 AM.
+                    Your next 1:1 with Jinh is tomorrow at 10 AM.
                   </span>
                 </div>
               </span>
@@ -96,10 +90,10 @@ export function SiteHeader({
                 <User className="mt-0.5 size-4" />
                 <div className="flex flex-col">
                   <span className="text-sm font-medium leading-tight">
-                    New user joined
+                    New participant joined
                   </span>
                   <span className="text-xs text-muted-foreground">
-                    John Doe signed up just now.
+                    Kim signed up just now.
                   </span>
                 </div>
               </span>
@@ -133,9 +127,7 @@ export function SiteHeader({
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-              side={"bottom"}
-              align="end"
+              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg mr-2 mt-2 lg:mr-6"
               sideOffset={4}
             >
               <DropdownMenuLabel className="p-0 font-normal">

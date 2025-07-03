@@ -1,31 +1,23 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-
+import { createSClient } from "@/supabase/server";
+import DashboardClientProvider from "./dashboard-client-provider";
 import { ReactNode } from "react";
 
-const user = {
-  name: "Prasad Reddy",
-  email: "prasad@gmail.com",
-  avatar:
-    "/avatar.svg",
-};
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
+  const supabase = createSClient();
 
-export default function DashBoardLayout({ children }: { children: ReactNode }) {
+  const [logRes, participantsRes, meetingsRes] = await Promise.all([
+    supabase.from("activity_log").select("*").order("id", { ascending: true }),
+    supabase.from("participants").select("*"),
+    supabase.from("meetings").select("id, rating, satisfaction, scheduled_at, user_id, status, participants(id, name, avatar_initial)"),
+  ]);
+
+  const activity = logRes.data ?? [];
+  const participants = participantsRes.data ?? [];
+  const meetings = meetingsRes.data ?? [];
+
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-    >
-      <AppSidebar variant="inset" user={user} />
-      <SidebarInset>
-        <SiteHeader user={user} />
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
+    <DashboardClientProvider activity={activity} participants={participants} meetings={meetings}>
+      {children}
+    </DashboardClientProvider>
   );
 }

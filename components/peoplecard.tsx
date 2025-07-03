@@ -1,14 +1,9 @@
 import React from "react";
 import {
   Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "./ui/card";
 
-const fixedColors = [
+export const fixedColors = [
   "bg-yellow-400 text-white",
   "bg-violet-600 text-white",
   "bg-green-600 text-white",
@@ -54,7 +49,7 @@ const PeopleCard = ({
       .map((m: any, idx: number) => ({
         name: m.participants.name,
         initial: m.participants.avatar_initial,
-        color: fixedColors[(idx+5) % fixedColors.length],
+        color: fixedColors[(idx + 5) % fixedColors.length],
       })) ?? [];
 
   return (

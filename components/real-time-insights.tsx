@@ -22,7 +22,7 @@ const RealTimeInsights = ({
               Surge Industry-identified
             </h1>
             <p className="text-xs text-muted-foreground leading-snug text-balance">
-              Match-success-rate between AI-analyzed & preassigned-quality
+              Match-success-rate between AI-analyzed & quality
             </p>
             <a
               href="#"

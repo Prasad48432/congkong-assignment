@@ -1,23 +1,6 @@
 "use client";
 
 import * as React from "react";
-import {
-  IconCamera,
-  IconChartBar,
-  IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
-  IconUsers,
-} from "@tabler/icons-react";
 
 import { NavTools } from "@/components/nav-documents";
 import { NavMain } from "@/components/nav-main";
@@ -29,7 +12,6 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
@@ -89,12 +71,12 @@ export const data = {
   tools: [
     {
       name: "Reports",
-      url: "#",
+      url: "/dashboard/reports",
       icon: NotepadText,
     },
     {
       name: "AI Matching Settings",
-      url: "#",
+      url: "/dashboard/ai-matching-settings",
       icon: Settings,
     },
   ],

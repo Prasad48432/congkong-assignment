@@ -1,6 +1,4 @@
 import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
-
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
@@ -44,17 +42,17 @@ export function SectionCards({
   );
 
   return (
-    <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-3 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-6">
+    <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-2 gap-3 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-6">
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="font-semibold">
+          <CardDescription className="text-xs lg:text-sm font-semibold">
             Total Participants
           </CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl flex gap-2 items-center">
+          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-3xl flex gap-2 items-center">
             <Users className="text-foreground/80" /> {participants.length}
           </CardTitle>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
             Trending up <IconTrendingUp className="size-4 text-green-300" />
           </div>
@@ -62,10 +60,10 @@ export function SectionCards({
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="font-semibold">
+          <CardDescription className="text-xs lg:text-sm font-semibold">
             Real-Time Identified
           </CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl flex items-center gap-1">
+          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-3xl flex items-center gap-1">
             <UserCheck className="text-foreground/80 mr-1" />
             {activeInLast2Days.length}{" "}
             <span className="text-sm flex items-center text-foreground/80">
@@ -77,7 +75,7 @@ export function SectionCards({
             </span>
           </CardTitle>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
             Down 5% <IconTrendingDown className="size-4 text-destructive" />
           </div>
@@ -85,46 +83,46 @@ export function SectionCards({
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="font-semibold">
+          <CardDescription className="text-xs lg:text-sm font-semibold">
             Total Matches
           </CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl flex gap-2 items-center">
+          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-3xl flex gap-2 items-center">
             <Puzzle className="text-foreground/80" />
             160
           </CardTitle>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Strong retention{" "}
+            Low churn{" "}
             <IconTrendingUp className="size-4 text-green-300" />
           </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="font-semibold">
+          <CardDescription className="text-xs lg:text-sm font-semibold">
             Avg Satistfaction
           </CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl flex items-center gap-2">
+          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-3xl flex items-center gap-2">
             <ThumbsUp className="text-foreground/80" /> {satisfactionAvg}%
           </CardTitle>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Steady increase <IconTrendingUp className="size-4 text-green-300" />
+            Stable growth <IconTrendingUp className="size-4 text-green-300" />
           </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="font-semibold">
+          <CardDescription className="text-xs lg:text-sm font-semibold">
             Total Meetings
           </CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl flex items-center gap-2">
+          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-3xl flex items-center gap-2">
             <MonitorPlay className="text-foreground/80" /> {meetings.length}
           </CardTitle>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
             Breakeven <Equal className="size-4 text-yellow-200" />
           </div>
@@ -132,14 +130,14 @@ export function SectionCards({
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="font-semibold">
+          <CardDescription className="text-xs lg:text-sm font-semibold">
             Peak Rating
           </CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl flex gap-2 items-center">
+          <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-3xl flex gap-2 items-center">
             <Star className="text-foreground/80" /> {ratingAvg}
           </CardTitle>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+        <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
             Slight Pickup <IconTrendingUp className="size-4 text-green-300" />
           </div>

@@ -1,6 +1,6 @@
 import { Button } from "@/components/moving-border-button";
 import { IconBrandGithub } from "@tabler/icons-react";
-import { ArrowRight, MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
