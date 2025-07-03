@@ -6,6 +6,14 @@ This project demonstrates a responsive, mobile-first dashboard, built with **Nex
 
 ---
 
+## 🌐 Deployed Version
+
+Prefer not to run locally?  
+You can view the live app here:  
+👉 [https://congkong-dashboard.vercel.app](https://congkong-dashboard.vercel.app)
+
+---
+
 ## 📌 Assignment Overview
 
 > **Objective**  
@@ -66,10 +74,4 @@ Open your browser and go to:
 [http://localhost:3000](http://localhost:3000)
 
 ---
-
-## 🌐 Deployed Version
-
-Prefer not to run locally?  
-You can view the live app here:  
-👉 [https://congkong-dashboard.vercel.app](https://congkong-dashboard.vercel.app)
 
