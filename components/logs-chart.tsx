@@ -15,6 +15,8 @@ import {
 import {
   ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
@@ -150,6 +152,7 @@ export function LogsChart({ activity }: { activity: Activity[] }) {
               dot={{ r: 3 }}
               activeDot={{ r: 5 }}
             />
+            <ChartLegend content={<ChartLegendContent />} />
           </LineChart>
         </ChartContainer>
       </CardContent>
