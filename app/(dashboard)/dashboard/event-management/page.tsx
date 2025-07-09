@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { CalendarClock, Star, ThumbsUp } from "lucide-react";
 import React from "react";
-import { useDashboardData } from "../context";
+import { useDashboardData } from "../../context";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AvatarFallback } from "@/components/ui/avatar";
 import { fixedColors } from "@/components/peoplecard";

@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useDashboardData } from "../context";
+import { useDashboardData } from "../../context";
 
 const Reports = () => {
   const { activity } = useDashboardData();

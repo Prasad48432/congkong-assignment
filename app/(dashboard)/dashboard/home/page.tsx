@@ -3,7 +3,7 @@ import { LogsChart } from "@/components/logs-chart";
 import { SectionCards } from "@/components/section-cards";
 import PeopleCard from "@/components/peoplecard";
 import RealTimeInsights from "@/components/real-time-insights";
-import { useDashboardData } from "./context";
+import { useDashboardData } from "../../context";
 
 export default function Page() {
 

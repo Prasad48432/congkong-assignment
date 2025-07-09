@@ -14,7 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import React, { useState } from "react";
-import { useDashboardData } from "../context";
+import { useDashboardData } from "../../context";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { AvatarFallback } from "@/components/ui/avatar";
 import { fixedColors } from "@/components/peoplecard";

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useDashboardData } from "../context";
+import { useDashboardData } from "../../context";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { fixedColors } from "@/components/peoplecard";

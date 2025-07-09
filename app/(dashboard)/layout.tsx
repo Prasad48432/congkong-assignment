@@ -2,7 +2,8 @@ import { createSClient } from "@/supabase/server";
 import DashboardClientProvider from "./dashboard-client-provider";
 import { ReactNode } from "react";
 
-export default async function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardGroupLayout({ children }: { children: ReactNode }) {
+
   const supabase = createSClient();
 
   const [logRes, participantsRes, meetingsRes] = await Promise.all([
@@ -21,3 +22,6 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     </DashboardClientProvider>
   );
 }
+
+
+

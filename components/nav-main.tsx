@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export function NavMain({
   items,
@@ -39,10 +40,10 @@ export function NavMain({
                     isActive && "bg-white text-black"
                   )}
                 >
-                  <a href={item.url}>
+                  <Link href={item.url}>
                     {item.icon && <item.icon className="size-4" />}
                     <span className="text-sm font-medium">{item.title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             );

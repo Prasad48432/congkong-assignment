@@ -32,7 +32,7 @@ export const data = {
   navMain: [
     {
       title: "Realtime KPI Dashboard",
-      url: "/dashboard",
+      url: "/dashboard/home",
       icon: ChartLine,
     },
     {
