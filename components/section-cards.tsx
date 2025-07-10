@@ -25,7 +25,8 @@ export function SectionCards({
   participants: Participant[];
   meetings: Meeting[];
 }) {
-  const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000);
+  const base = new Date("2025-07-02T17:00:00");
+  const twoDaysAgo = new Date(base.getTime() - 2 * 24 * 60 * 60 * 1000);
 
   const activeInLast2Days = participants.filter((participant) => {
     const lastActive = new Date(participant.last_active_at);
@@ -93,8 +94,7 @@ export function SectionCards({
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-xs lg:text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Low churn{" "}
-            <IconTrendingUp className="size-4 text-green-300" />
+            Low churn <IconTrendingUp className="size-4 text-green-300" />
           </div>
         </CardFooter>
       </Card>

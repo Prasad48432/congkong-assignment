@@ -44,7 +44,16 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function LogsChart({ activity }: { activity: Activity[] }) {
-  const activityData = activity.map((item) => ({
+  const isMobile = useIsMobile();
+  const [hoursRange, setHoursRange] = useState<number>(8);
+  const now = new Date("2025-06-30T11:30:00");
+  const hoursAgo = new Date(now.getTime() - hoursRange * 60 * 60 * 1000);
+
+  const activityData = activity.
+  filter((item) => {
+    return new Date(item.timestamp) >= hoursAgo;
+  })
+  .map((item) => ({
     time: new Date(item.timestamp).toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
@@ -53,11 +62,6 @@ export function LogsChart({ activity }: { activity: Activity[] }) {
     matched: item.matches,
     meeting: item.meetings,
   }));
-
-  const isMobile = useIsMobile();
-  const [hoursRange, setHoursRange] = useState<number>(8); // default: last 8 hours
-
-  const filteredData = activityData.slice(-hoursRange);
 
   return (
     <Card className="@container/card w-full">
@@ -81,7 +85,10 @@ export function LogsChart({ activity }: { activity: Activity[] }) {
             <ToggleGroupItem value="24">Last 24 hours</ToggleGroupItem>
             <ToggleGroupItem value="8">Last 8 hours</ToggleGroupItem>
           </ToggleGroup>
-          <Select value={`${hoursRange}`} onValueChange={(value) => setHoursRange(Number(value))}>
+          <Select
+            value={`${hoursRange}`}
+            onValueChange={(value) => setHoursRange(Number(value))}
+          >
             <SelectTrigger
               className="flex w-28 text-xs **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
               size="sm"
@@ -108,7 +115,7 @@ export function LogsChart({ activity }: { activity: Activity[] }) {
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <LineChart data={filteredData}>
+          <LineChart data={activityData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="time"
